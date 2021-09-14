@@ -1,0 +1,80 @@
+<!-- The goal here is to get the unique values on the element sourceId (similar as a SQL DISTINCT) -->
+<!--
+The simplest way to get unique value is to use an XPath that selects elements for which any preceding element
+does not already have the same value. This way we select only distinch values and end up with a node-set of unique values
+
+//*[local-name()='price'][not(./*[local-name()='sourceId'] = preceding::*[local-name()='price']/*[local-name()='sourceId'])]
+is the same as (when we do not need to care of namespaice):
+//price[not(sourceId = preceding::price/sourceId)]
+
+The problem of this approach is that it is xpath as it traverse the preceding part of XML document for every <price> node of the
+document and so this does not scale well for big documents
+Indeed searching through all the preceding siblings with the 'preceding' axis takes a long time if you're near the end of the records
+-->
+<!--
+A second way to implement get unique values is by using Muenchian grouping using XSLT Keys: <xsl:key>
+Keys works a bit like a dictionary, we assign a key value that will be mapped to a node or node-set value.
+If there is more than one node having the same key value, that all the nodes (a node-set) are retrieved at once using the key value.
+-> this effectively group nodes based on some particular value in the nodes.
+
+Now once we have the grouping in the key, we can retrieve the unique node by taking the first node of each grouped node-set.
+
+
+
+-->
+<intruments>
+	<instrument>
+		<instId>1</instId>
+		<prices>
+			<price>
+				<sourceId>303</sourceId>
+			</price>
+		</prices>
+	</instrument>
+	<instrument>
+		<instId>2</instId>
+		<prices>
+			<price>
+				<sourceId>303</sourceId>
+			</price>
+			<price>
+				<sourceId>101</sourceId>
+			</price>
+		</prices>
+	</instrument>
+	<instrument>
+		<instId>3</instId>
+		<prices>
+			<price>
+				<sourceId>101</sourceId>
+			</price>
+		</prices>
+	</instrument>
+	<instrument>
+		<instId>4</instId>
+		<prices>
+			<price>
+				<sourceId>101</sourceId>
+			</price>
+		</prices>
+	</instrument>
+	<instrument>
+		<instId>5</instId>
+		<prices>
+			<price>
+				<sourceId>606</sourceId>
+			</price>
+			<price>
+				<sourceId>303</sourceId>
+			</price>
+		</prices>
+	</instrument>
+	<instrument>
+			<instId>6</instId>
+			<prices>
+				<price>
+					<sourceId>404</sourceId>
+				</price>
+			</prices>
+	</instrument>
+</intruments>

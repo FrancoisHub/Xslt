@@ -1,0 +1,19 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D6E9CA9-C597-41ED-851D-FC7AB2C1F3D3}"
+	ProjectSection(SolutionItems) = preProject
+		MuenchianGrouping.xml = MuenchianGrouping.xml
+		MuenchianGrouping.xslt = MuenchianGrouping.xslt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7797CC9-94BF-4C19-99A3-82B2D3B8D014}
+	EndGlobalSection
+EndGlobal
